@@ -1,4 +1,15 @@
-%h1 All of the things!
-%p All the json you could possibly want.
+%h1 Campers
+%p
+  = form_tag({:action => :index}, {:method => :get}) do
+    = label_tag :query, "Search"
+    = text_field_tag :query
+    = submit_tag :go
+%p
+  = link_to "Tire me a new one", new_camper_path
+- if params[:query]
+  %h2="Campers matching #{params[:query]}"
+-else
+  %h2 All of the things!
+  %p All the json you could possibly want.
 -@campers.each do |c|
   %p=c.to_json

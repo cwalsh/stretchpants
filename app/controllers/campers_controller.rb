@@ -1,10 +1,10 @@
 class CampersController < ApplicationController
   def index
-    @campers = Camper.search "*"
+    @campers = params[:query].blank? ? Camper.all : Camper.search(params[:query].to_s)
   end
   
   def show
-    @camper = Camper.search(params[:id].to_s).first
+    @camper = Camper.find(params[:id].to_s)
   end
   
   def new
@@ -13,8 +13,7 @@ class CampersController < ApplicationController
   
   def create
     @camper = Camper.create(params[:camper])
-    sleep(1)
     redirect_to @camper
   end
-  
+
 end
