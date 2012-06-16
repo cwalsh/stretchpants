@@ -2,4 +2,6 @@
 %p
   = link_to "Back to the campers list", campers_path
 %p
+  = link_to "Edit #{@camper.name}", edit_camper_path(@camper)
+%p
   = @camper.as_json

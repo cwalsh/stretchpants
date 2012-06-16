@@ -12,5 +12,7 @@
   %h2 All of the things!
   %p All the json you could possibly want.
 -@campers.each do |c|
-  %p=link_to "#{c.name}", c
+  %p
+    =link_to "#{c.name}", c
+    =link_to "Edit", edit_camper_path(c)
   %p=c.to_json

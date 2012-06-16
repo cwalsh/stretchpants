@@ -1,0 +1,27 @@
+%h1="Edit #{@camper.name}"
+= form_for @camper do |f|
+  %p
+    = f.label :name
+    %br
+    = f.text_field :name
+  %p
+    = f.label :twitter
+    %br
+    = f.text_field :twitter
+  %p
+    = f.label :city
+    %br
+    = f.text_field :city
+  %p
+    = f.label :drink_count
+    %br
+    = f.text_field :drink_count
+  %p
+    = f.label :tags
+    %br
+    = f.text_field :tags, :value => @camper.tags.join(", ")
+  %p
+    = f.label :bio
+    %br
+    = f.text_area :bio
+  =f.submit
