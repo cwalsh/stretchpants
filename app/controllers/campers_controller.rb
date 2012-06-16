@@ -4,7 +4,7 @@ class CampersController < ApplicationController
   end
   
   def show
-    @camper = Camper.find(params[:id].to_s)
+    @camper = Camper.find(CGI.escape(params[:id].to_s))
   end
   
   def new
@@ -12,6 +12,7 @@ class CampersController < ApplicationController
   end
   
   def create
+    params[:camper][:tags] = params[:camper][:tags].gsub(/,/, ' ').split(' ')
     @camper = Camper.create(params[:camper])
     redirect_to @camper
   end

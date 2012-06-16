@@ -5,17 +5,11 @@ class Camper
   property :twitter
   property :city
   property :bio
-  property :drink_count
-  property :tags, :type => 'array'
+  property :drink_count, :class => Integer, :default => 0
+  property :tags, :default => [], :analyzer => 'keyword', :type => [String]
 
   def id
     name
-  end
-  
-  def tags=(tags)
-    return if tags.nil?
-    tags = tags.gsub!(/,/," ").split if tags.is_a? String
-    self.attributes[:tags] = tags
   end
 
   # If you were using ActiveRecord etc. instead you would include these:
