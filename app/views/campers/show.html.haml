@@ -1,3 +1,5 @@
-%h1=@camper.title
+%h1=@camper.name
+%p
+  = link_to "Back to the campers list", campers_path
 %p
   = @camper.as_json

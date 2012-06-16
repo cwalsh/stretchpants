@@ -1,26 +1,21 @@
 class Camper
   include Tire::Model::Persistence
 
-  property :title, :analyzer => 'snowball'
-  property :created_at, :type => 'date'
-  property :updated_at, :type => 'date'
-  property :content
+  property :name, :analyzer => 'snowball'
+  property :twitter
+  property :city
+  property :bio
+  property :drink_count
   property :tags, :type => 'array'
 
-  before_save :timestamps
-
   def id
-    title
+    name
   end
   
   def tags=(tags)
     return if tags.nil?
-    t=self.attributes[:tags] = tags.gsub(/,/," ").split
-  end
-
-  def timestamps
-    self.updated_at = Time.now
-    self.created_at ||= Time.now
+    tags = tags.gsub!(/,/," ").split if tags.is_a? String
+    self.attributes[:tags] = tags
   end
 
   # If you were using ActiveRecord etc. instead you would include these:
