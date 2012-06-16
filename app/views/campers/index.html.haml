@@ -2,7 +2,7 @@
 %p
   = form_tag({:action => :index}, {:method => :get}) do
     = label_tag :query, "Search"
-    = text_field_tag :query
+    = text_field_tag :query, params[:query]
     = submit_tag :go
 %p
   = link_to "Tire me a new one", new_camper_path
