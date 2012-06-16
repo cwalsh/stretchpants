@@ -1,0 +1,15 @@
+%h1 New Camper
+= form_for @camper do |f|
+  %p
+    = f.label :title
+    %br
+    = f.text_field :title
+  %p
+    = f.label :tags
+    %br
+    = f.text_field :tags
+  %p
+    = f.label :content
+    %br
+    = f.text_area :content
+  =f.submit
