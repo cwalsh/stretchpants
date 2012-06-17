@@ -9,7 +9,7 @@ class Camper
   property :tags, :analyzer => 'keyword', :type => [String]
 
   def id
-    name
+    name.blank? ? nil : name.gsub(/ /,"_").downcase
   end
 
   # If you were using ActiveRecord etc. instead you would include these:

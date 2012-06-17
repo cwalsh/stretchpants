@@ -12,7 +12,9 @@ class CampersController < ApplicationController
 
       search.sort { by :name, 'asc' }
 
-      search.filter :term, :tags => params[:tags] unless params[:tags].blank?
+      unless params[:tags].blank?
+        search.filter :term, :tags => params[:tags]
+      end
 
       search.facet 'tags', :global => true do
         terms :tags
@@ -22,7 +24,7 @@ class CampersController < ApplicationController
   end
 
   def show
-    @camper = Camper.find(CGI.escape(params[:id].to_s))
+    @camper = Camper.find(params[:id].to_s)
   end
 
   def new
@@ -30,12 +32,12 @@ class CampersController < ApplicationController
   end
 
   def edit
-    @camper = Camper.find(CGI.escape(params[:id].to_s))
+    @camper = Camper.find(params[:id].to_s)
   end
 
   def update
     params[:camper][:tags] = params[:camper][:tags].gsub(/,/, ' ').split(' ')
-    @camper = Camper.find(params[:id].to_s)
+    @camper = Camper.find(params[:id])
     @camper.update_attributes(params[:camper])
     redirect_to @camper
   end
