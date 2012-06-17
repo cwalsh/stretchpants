@@ -12,8 +12,10 @@ class CampersController < ApplicationController
 
       search.sort { by :name, 'asc' }
 
-      search.facet 'tags', :global => true do |facet|
-        facet.terms :tags
+      search.filter :term, :tags => params[:tags] unless params[:tags].blank?
+
+      search.facet 'tags', :global => true do
+        terms :tags
       end
     end
     render :index

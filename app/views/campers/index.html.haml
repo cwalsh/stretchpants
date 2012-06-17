@@ -29,7 +29,7 @@
           = k
           %ul
             -v['terms'].each do |term|
-              %li="#{term['term']} (#{term['count']})"
+              %li=link_to "#{term['term']} (#{term['count']})", params.merge(:tags => term['term'])
 #campers
   -@campers.each do |c|
     %p
