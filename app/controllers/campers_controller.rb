@@ -1,10 +1,10 @@
 class CampersController < ApplicationController
   def index
-    @campers = params[:query].blank? ? Camper.all : Camper.search(params[:query].to_s)
+    @campers = params[:query].blank? ? Camper.all : Camper.search(params[:query].blank? ? "*" : params[:query].to_s)
   end
 
   def search
-    @query = params[:query] || "*"
+    @query = params[:query].blank? ? "*" : params[:query].to_s
     @campers = Camper.search do |search|
       search.query do |query|
         query.string @query
