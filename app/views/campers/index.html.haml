@@ -5,14 +5,29 @@
     = text_field_tag :query, params[:query]
     = submit_tag :go
 %p
+  = form_tag({:action => :search}, {:method => :get}) do
+    = label_tag :query, "Complex Search"
+    = text_field_tag :query, params[:query]
+    = submit_tag :complex_search
+%p
   = link_to "Tire me a new one", new_camper_path
 - if params[:query]
   %h2="Campers matching #{params[:query]}"
 -else
   %h2 All of the things!
   %p All the json you could possibly want.
--@campers.each do |c|
-  %p
-    =link_to "#{c.name}", c
-    =link_to "Edit", edit_camper_path(c)
-  %p=c.to_json
+#facets
+  - if @campers.facets
+    %ul
+      - @campers.facets.each do |k,v|
+        %li
+          = k
+          %ul
+            -v['terms'].each do |term|
+              %li="#{term['term']} (#{term['count']})"
+#campers
+  -@campers.each do |c|
+    %p
+      =link_to "#{c.name}", c
+      =link_to "Edit", edit_camper_path(c)
+    %p=c.to_json
