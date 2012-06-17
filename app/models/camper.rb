@@ -6,7 +6,7 @@ class Camper
   property :city
   property :bio
   property :drink_count, :class => Integer, :default => 0
-  property :tags, :default => [], :analyzer => 'keyword', :type => [String]
+  property :tags, :analyzer => 'keyword', :type => [String]
 
   def id
     name
