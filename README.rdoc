@@ -1,7 +1,9 @@
 == Welcome to Stretchpants!
 
 Stretchpants is a really basic rails app that stores its data in elasticsearch.
-Normally one would 
+Normally one would store data in a database or key-value store and then add
+elastic search to it, but as this app shows it's entirely possible to store the
+data directly in elastic search.
 
 == Getting Started
 
