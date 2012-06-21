@@ -34,5 +34,5 @@
   -@campers.each do |c|
     %p
       =link_to "#{c.name}", c
-      =link_to "Edit", edit_camper_path(c)
+      =link_to "Edit", edit_camper_path(c.id)
     %p=c.to_json

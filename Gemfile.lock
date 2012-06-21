@@ -1,6 +1,6 @@
 GIT
-  remote: git://github.rc/cwalsh/tire.git
-  revision: e546f3355d023da91d8e1a16fb09e8e7efb411b7
+  remote: git://github.com/cwalsh/tire.git
+  revision: 543a9bf02608024871e1bcd2a6e911ef516c22dd
   specs:
     tire (0.4.2)
       activemodel (>= 3.0)

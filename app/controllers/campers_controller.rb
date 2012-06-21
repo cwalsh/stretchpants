@@ -4,22 +4,8 @@ class CampersController < ApplicationController
   end
 
   def search
-    @query = params[:query].blank? ? "*" : params[:query].to_s
-    @campers = Camper.search do |search|
-      search.query do |query|
-        query.string @query
-      end
-
-      search.sort { by :name, 'asc' }
-
-      unless params[:tags].blank?
-        search.filter :term, :tags => params[:tags]
-      end
-
-      search.facet 'tags', :global => true do
-        terms :tags
-      end
-    end
+    query = params[:query].blank? ? "*" : params[:query].to_s
+    @campers = Camper.full_search query, params.slice(:tags)
     render :index
   end
 
